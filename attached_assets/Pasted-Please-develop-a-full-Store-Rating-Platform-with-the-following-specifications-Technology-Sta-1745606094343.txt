@@ -1,0 +1,117 @@
+Please develop a full Store Rating Platform with the following specifications:
+
+### Technology Stack
+- Backend: Express.js (or NestJS/Loopback if you prefer)
+- Database: PostgreSQL
+- Frontend: React.js with a modern UI library like Material-UI or Ant Design
+
+### Key Features
+1. Multi-role user system (Admin, Normal User, Store Owner)
+2. Authentication & authorization system
+3. Store rating functionality (1-5 stars)
+4. Dashboard for each user type
+5. CRUD operations for users and stores
+6. Search and filter functionality
+7. Form validations
+
+### Database Design
+
+Create the following tables with appropriate relationships:
+
+1. `users` table:
+   - id (PK)
+   - name (VARCHAR, 20-60 chars)
+   - email (VARCHAR, unique)
+   - password (hashed)
+   - address (VARCHAR, max 400 chars)
+   - role (ENUM: 'admin', 'user', 'store_owner')
+   - created_at
+   - updated_at
+
+2. `stores` table:
+   - id (PK)
+   - name (VARCHAR)
+   - email (VARCHAR)
+   - address (VARCHAR, max 400 chars)
+   - owner_id (FK to users)
+   - created_at
+   - updated_at
+
+3. `ratings` table:
+   - id (PK)
+   - store_id (FK to stores)
+   - user_id (FK to users)
+   - rating (INTEGER, 1-5)
+   - created_at
+   - updated_at
+
+### Backend Development
+
+1. Set up Express.js with the necessary middleware (cors, body-parser, etc.)
+2. Implement JWT-based authentication
+3. Create RESTful APIs for:
+   - User management (registration, login, password update)
+   - Store management (CRUD operations)
+   - Rating submission and updates
+   - Dashboard data retrieval for each user type
+4. Apply proper validation for all inputs according to requirements
+5. Implement authorization middleware to protect routes based on user roles
+6. Handle error cases and provide appropriate responses
+
+### Frontend Development
+
+1. Create a React application with React Router for navigation
+2. Implement authentication context to manage user sessions
+3. Build the following pages/components:
+   
+   a. Authentication:
+   - Login page
+   - Registration page for normal users
+   - Password update component
+   
+   b. System Administrator dashboard:
+   - Overview with total users, stores, and ratings
+   - User management page with filtering and sorting
+   - Store management page with filtering and sorting
+   - User and store detail views
+   
+   c. Normal User interface:
+   - Store listing page with search and filter capabilities
+   - Rating submission/modification interface
+   - User profile page
+   
+   d. Store Owner dashboard:
+   - Overview of store performance
+   - List of users who rated the store
+   - Average rating display
+
+4. Implement form validations:
+   - Name: 20-60 characters
+   - Address: Max 400 characters
+   - Password: 8-16 characters with at least one uppercase letter and one special character
+   - Email: Standard email validation
+
+5. Add sorting capabilities for all table components
+6. Ensure responsive design works across devices
+
+### Security Considerations
+
+1. Hash passwords before storing
+2. Implement proper JWT token handling
+3. Use middleware to verify user roles before accessing protected routes
+4. Sanitize user inputs to prevent SQL injection and XSS attacks
+
+### Testing
+
+1. Write unit tests for key backend functions
+2. Create integration tests for important API endpoints
+3. Implement frontend tests for critical components
+
+### Deployment Instructions
+
+1. Set up the database and run migration scripts
+2. Deploy the backend application
+3. Build and deploy the frontend application
+4. Provide documentation for accessing the system
+
+Please develop this application with clean code, well-structured architecture, and best practices for both frontend and backend development. Make sure to follow the requirements closely, especially regarding user roles and functionality for each type of user.
