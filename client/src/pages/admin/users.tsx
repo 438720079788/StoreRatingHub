@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { User } from "@shared/schema";
 import {
   Table,
   TableBody,
@@ -49,10 +50,10 @@ import { useToast } from "@/hooks/use-toast";
 export default function AdminUsers() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
-  const [roleFilter, setRoleFilter] = useState("");
+  const [roleFilter, setRoleFilter] = useState("all");
   const [userToDelete, setUserToDelete] = useState<number | null>(null);
 
-  const { data: users, isLoading } = useQuery({
+  const { data: users, isLoading } = useQuery<User[]>({
     queryKey: ["/api/users"],
   });
 
@@ -88,12 +89,12 @@ export default function AdminUsers() {
   };
 
   // Filter users based on search term and role filter
-  const filteredUsers = users?.filter(user => {
+  const filteredUsers = users?.filter((user: User) => {
     const matchesSearch = searchTerm === "" || 
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesRole = roleFilter === "" || user.role === roleFilter;
+    const matchesRole = roleFilter === "all" || user.role === roleFilter;
     
     return matchesSearch && matchesRole;
   }) || [];
@@ -148,7 +149,7 @@ export default function AdminUsers() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="">All roles</SelectItem>
+                    <SelectItem value="all">All roles</SelectItem>
                     <SelectItem value="admin">Admin</SelectItem>
                     <SelectItem value="user">User</SelectItem>
                     <SelectItem value="store_owner">Store Owner</SelectItem>

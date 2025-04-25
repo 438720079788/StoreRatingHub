@@ -16,30 +16,31 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Search } from "lucide-react";
+import { Store } from "@shared/schema";
 
 export default function UserStores() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("all");
   const [isRatingDialogOpen, setIsRatingDialogOpen] = useState(false);
-  const [selectedStore, setSelectedStore] = useState(null);
+  const [selectedStore, setSelectedStore] = useState<Store | null>(null);
 
-  const { data: stores, isLoading } = useQuery({
+  const { data: stores, isLoading } = useQuery<Store[]>({
     queryKey: ["/api/stores"],
   });
 
-  const handleRateStore = (store) => {
+  const handleRateStore = (store: Store) => {
     setSelectedStore(store);
     setIsRatingDialogOpen(true);
   };
 
   // Filter stores based on search term and category
-  const filteredStores = stores?.filter(store => {
+  const filteredStores = stores?.filter((store: Store) => {
     const matchesSearch = searchTerm === "" || 
       store.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       store.address.toLowerCase().includes(searchTerm.toLowerCase());
     
     // In a real app, stores would have categories
-    const matchesCategory = category === "";
+    const matchesCategory = category === "all";
     
     return matchesSearch && matchesCategory;
   }) || [];
@@ -66,7 +67,7 @@ export default function UserStores() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="">All Categories</SelectItem>
+                    <SelectItem value="all">All Categories</SelectItem>
                     <SelectItem value="food">Food & Drinks</SelectItem>
                     <SelectItem value="retail">Retail</SelectItem>
                     <SelectItem value="services">Services</SelectItem>
