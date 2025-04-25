@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { StarRating } from "@/components/ui/star-rating";
-import { Store as StoreType } from "@shared/schema";
+import { Store as StoreType, StoreWithRatings } from "@shared/schema";
 import {
   Select,
   SelectContent,
@@ -53,7 +53,7 @@ export default function AdminStores() {
   const [sortBy, setSortBy] = useState("name");
   const [storeToDelete, setStoreToDelete] = useState<number | null>(null);
 
-  const { data: stores, isLoading } = useQuery<StoreType[]>({
+  const { data: stores, isLoading } = useQuery<StoreWithRatings[]>({
     queryKey: ["/api/stores"],
   });
 
@@ -89,7 +89,7 @@ export default function AdminStores() {
   };
 
   // Filter and sort stores
-  const filteredStores = stores?.filter((store: StoreType) => {
+  const filteredStores = stores?.filter((store: StoreWithRatings) => {
     return searchTerm === "" || 
       store.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       store.address.toLowerCase().includes(searchTerm.toLowerCase());
@@ -214,7 +214,7 @@ export default function AdminStores() {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <div className="text-sm">{store.owner_name || "Unknown"}</div>
+                          <div className="text-sm">{store.owner?.name || "Unknown"}</div>
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center">
