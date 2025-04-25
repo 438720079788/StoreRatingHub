@@ -235,7 +235,7 @@ export default function AdminUsers() {
                         </TableCell>
                         <TableCell>
                           <div className="text-sm text-muted-foreground">
-                            {format(new Date(user.created_at), 'MMM d, yyyy')}
+                            {user.created_at ? format(new Date(user.created_at), 'MMM d, yyyy') : 'N/A'}
                           </div>
                         </TableCell>
                         <TableCell className="text-right">

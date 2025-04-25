@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { StarRating } from "@/components/ui/star-rating";
+import { Store as StoreType } from "@shared/schema";
 import {
   Select,
   SelectContent,
@@ -52,7 +53,7 @@ export default function AdminStores() {
   const [sortBy, setSortBy] = useState("name");
   const [storeToDelete, setStoreToDelete] = useState<number | null>(null);
 
-  const { data: stores, isLoading } = useQuery({
+  const { data: stores, isLoading } = useQuery<StoreType[]>({
     queryKey: ["/api/stores"],
   });
 
@@ -88,7 +89,7 @@ export default function AdminStores() {
   };
 
   // Filter and sort stores
-  const filteredStores = stores?.filter(store => {
+  const filteredStores = stores?.filter((store: StoreType) => {
     return searchTerm === "" || 
       store.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       store.address.toLowerCase().includes(searchTerm.toLowerCase());

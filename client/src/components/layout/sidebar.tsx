@@ -91,16 +91,13 @@ export function Sidebar({ isMobile, onClose }: { isMobile?: boolean; onClose?: (
               key={itemIndex} 
               href={item.href}
               onClick={handleNavClick}
+              className={cn(
+                "flex items-center px-4 py-2 text-white",
+                location === item.href ? "bg-primary-light" : "hover:bg-primary-light"
+              )}
             >
-              <a 
-                className={cn(
-                  "flex items-center px-4 py-2 text-white",
-                  location === item.href ? "bg-primary-light" : "hover:bg-primary-light"
-                )}
-              >
-                <span className="material-icons mr-3">{item.icon}</span>
-                {item.label}
-              </a>
+              <span className="material-icons mr-3">{item.icon}</span>
+              {item.label}
             </Link>
           ))}
         </div>
