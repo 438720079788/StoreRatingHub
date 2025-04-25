@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme colors */
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  
+  /* Primary and secondary colors from design */
+  --primary: 225 64% 47%;  /* #3f51b5 */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 339 94% 49%;  /* #f50057 */
+  --secondary-foreground: 0 0% 100%;
+  
+  /* Status colors from design */
+  --destructive: 0 84.2% 60.2%;  /* #f44336 */
+  --destructive-foreground: 60 9.1% 97.8%;
+  --warning: 36 100% 50%;  /* #ff9800 */
+  --warning-foreground: 0 0% 98%;
+  --info: 207 90% 54%;  /* #2196f3 */
+  --info-foreground: 0 0% 98%;
+  --success: 122 39% 49%;  /* #4caf50 */
+  --success-foreground: 0 0% 98%;
+  
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --ring: 224 64% 47%;
+  --radius: 0.5rem;
+  
+  /* Chart colors */
+  --chart-1: 225 64% 47%;
+  --chart-2: 339 94% 49%;
+  --chart-3: 36 100% 50%;
+  --chart-4: 122 39% 49%;
+  --chart-5: 207 90% 54%;
+  
+  /* Text colors */
+  --text-primary: 0 0% 13%;
+  --text-secondary: 0 0% 46%;
+  --text-disabled: 0 0% 62%;
+  
+  /* Sidebar colors */
+  --sidebar-background: 225 64% 47%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 227 70% 65%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 224 64% 37%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 224 62% 57%;
+  --sidebar-ring: 224 64% 47%;
+}
+
+.dark {
+  /* Dark theme colors */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  
+  /* Primary and secondary colors from design (slightly adjusted for dark theme) */
+  --primary: 227 70% 65%;  /* Lighter version of #3f51b5 */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 339 94% 49%;  /* #f50057 */
+  --secondary-foreground: 0 0% 98%;
+  
+  /* Status colors (slightly adjusted for dark theme) */
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --warning: 36 100% 50%;
+  --warning-foreground: 0 0% 98%;
+  --info: 207 90% 54%;
+  --info-foreground: 0 0% 98%;
+  --success: 122 39% 49%;
+  --success-foreground: 0 0% 98%;
+  
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --ring: 227 70% 65%;
+  
+  /* Chart colors */
+  --chart-1: 227 70% 65%;
+  --chart-2: 339 94% 49%;
+  --chart-3: 36 100% 50%;
+  --chart-4: 122 39% 49%;
+  --chart-5: 207 90% 54%;
+  
+  /* Sidebar colors */
+  --sidebar-background: 224 64% 20%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 227 70% 65%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 224 64% 30%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 224 62% 25%;
+  --sidebar-ring: 227 70% 65%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  vertical-align: middle;
+}
